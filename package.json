@@ -1,7 +1,7 @@
 {
   "name": "peek-bookmarklet",
-  "version": "1.0.0",
-  "description": "A lightweight bookmarklet to instantly access archived versions of web pages",
+  "version": "1.1.0",
+  "description": "A lightweight, auto-updating bookmarklet to instantly access archived versions of web pages",
   "main": "bookmarklet.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,8 @@
     "paywall",
     "archived-web-pages",
     "internet-archive",
-    "web-archiving"
+    "web-archiving",
+    "auto-updating"
   ],
   "author": "",
   "license": "MIT",

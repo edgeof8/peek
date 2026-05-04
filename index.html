@@ -184,15 +184,15 @@
 <body>
     <div class="container">
         <h1>👀 peek</h1>
-        <p class="subtitle">One-click access to archived web pages</p>
+        <p class="subtitle">One-click access to archived web pages (auto-updating)</p>
 
         <p class="description">
-            Read paywalled articles, recover deleted content, and avoid tracking—instantly redirected to the latest archived snapshot.
+            Read paywalled articles, recover deleted content, and avoid tracking—instantly redirected to the latest archived snapshot. <strong>Always up-to-date:</strong> The bookmarklet automatically loads the latest version from GitHub.
         </p>
 
         <div class="cta-section">
             <p class="cta-text">📌 Drag to your bookmarks bar:</p>
-            <a href="javascript:(function(){const url=window.location.href;const archives=['archive.is','archive.ph','archive.today','web.archive.org'];if(archives.some(a=>url.includes(a))){alert('You\'re already on an archive page!');return;}window.location.href='https://archive.is/latest/'+encodeURIComponent(url);})();" class="bookmarklet-link">
+            <a href="javascript:(function(){var s=document.createElement('script');s.src='https://edgeof8.github.io/peek/peek.js?v='+Date.now();document.body.appendChild(s);})();" class="bookmarklet-link">
                 👀 Peek
             </a>
         </div>
@@ -221,12 +221,12 @@
         </div>
 
         <div class="code-section">
-            <div class="code-label">Bookmarklet Code</div>
-            <code>javascript:(function(){const url=window.location.href;const archives=['archive.is','archive.ph','archive.today','web.archive.org'];if(archives.some(a=>url.includes(a))){alert('You\'re already on an archive page!');return;}window.location.href='https://archive.is/latest/'+encodeURIComponent(url);})();</code>
+            <div class="code-label">Bookmarklet Code (Loader)</div>
+            <code>javascript:(function(){var s=document.createElement('script');s.src='https://edgeof8.github.io/peek/peek.js?v='+Date.now();document.body.appendChild(s);})();</code>
         </div>
 
         <p class="description">
-            <strong>Can't drag?</strong> Copy the code above and create a new bookmark with it as the URL. Works on desktop and mobile!
+            <strong>Can't drag?</strong> Copy the code above and create a new bookmark with it as the URL. Works on desktop and mobile! <strong>Note:</strong> This loader automatically fetches the latest version of peek from GitHub.
         </p>
 
         <div class="footer">

@@ -9,6 +9,7 @@ A lightweight JavaScript bookmarklet to bypass soft paywalls and access archived
 - 🚀 **Instant.** One click redirects you to the latest archived snapshot of any webpage.
 - 🔒 **Private.** No tracking, no telemetry, no external libraries.
 - 📱 **Universal.** Works on Chrome, Safari, Firefox, Edge, and mobile browsers.
+- 🔄 **Auto-updating.** Always loads the latest version from GitHub automatically.
 
 ## Installation
 
@@ -18,7 +19,7 @@ A lightweight JavaScript bookmarklet to bypass soft paywalls and access archived
 2. Find the **Peek** button below
 3. Drag it to your bookmarks bar
 
-**👉 [Peek](javascript:(function(){const url=window.location.href;const archives=['archive.is','archive.ph','archive.today','web.archive.org'];if(archives.some(a=>url.includes(a))){alert("You're already on an archive page!");return;}window.location.href='https://archive.is/latest/'+encodeURIComponent(url);})();)** ← Drag this link to your bookmarks bar
+**👉 [Peek](javascript:(function(){var s=document.createElement('script');s.src='https://edgeof8.github.io/peek/peek.js?v='+Date.now();document.body.appendChild(s);})();)** ← Drag this link to your bookmarks bar
 
 ### Option 2: Manual Installation
 
@@ -27,8 +28,10 @@ A lightweight JavaScript bookmarklet to bypass soft paywalls and access archived
 3. Paste the following code into the URL field:
 
 ```javascript
-javascript:(function(){const url=window.location.href;const archives=['archive.is','archive.ph','archive.today','web.archive.org'];if(archives.some(a=>url.includes(a))){alert("You're already on an archive page!");return;}window.location.href='https://archive.is/latest/'+encodeURIComponent(url);})();
+javascript:(function(){var s=document.createElement('script');s.src='https://edgeof8.github.io/peek/peek.js?v='+Date.now();document.body.appendChild(s);})();
 ```
+
+**Note:** This loader script automatically fetches the latest version of peek from GitHub, so you'll always have the most up-to-date features and bug fixes.
 
 ## How to Use
 
@@ -98,10 +101,45 @@ A: Yes! Mobile bookmarklets work on all modern browsers (Chrome, Safari, Firefox
 
 ## Technical Details
 
-- **Performance:** Executes in <1ms
-- **Size:** 307 bytes (minified)
+- **Architecture:** Remote loader pattern - bookmarklet loads the latest script from GitHub
+- **Auto-updating:** Always fetches the most recent version automatically
+- **Loader Size:** 147 bytes (minified)
+- **Core Script Size:** 307 bytes (minified)
+- **Performance:** Executes in <1ms (loader) + network time for core script
 - **Dependencies:** None
 - **Browser Support:** All modern browsers (Chrome, Safari, Firefox, Edge, Opera, etc.)
+
+## How It Works
+
+The bookmarklet uses a two-stage loading process:
+
+1. **Loader Stage:** The bookmarklet contains a tiny loader script that creates a `<script>` element and loads `peek.js` from GitHub
+2. **Execution Stage:** The loaded `peek.js` script executes the core functionality
+
+This architecture allows for:
+- **Automatic updates:** Users always get the latest features and bug fixes
+- **Small bookmarklet:** The bookmarklet itself is tiny (147 bytes vs 307 bytes)
+- **Easy maintenance:** Core logic can be updated without users reinstalling
+
+```javascript
+// Loader (what's in the bookmarklet)
+javascript:(function(){
+  var s=document.createElement('script');
+  s.src='https://edgeof8.github.io/peek/peek.js?v='+Date.now();
+  document.body.appendChild(s);
+})();
+
+// Core script (loaded from peek.js)
+(function() {
+  const url = window.location.href;
+  const archives = ['archive.is', 'archive.ph', 'archive.today', 'web.archive.org'];
+  if (archives.some(a => url.includes(a))) {
+    alert('You\'re already on an archive page!');
+    return;
+  }
+  window.location.href = 'https://archive.is/latest/' + encodeURIComponent(url);
+})();
+```
 
 ## License
 

@@ -1,7 +1,8 @@
 /**
  * peek - Quick Access to Archived Web Pages
- * 
- * This file contains the bookmarklet code in both expanded and minified form.
+ *
+ * This file contains the bookmarklet loader code in both expanded and minified form.
+ * The loader dynamically loads the core peek.js script from GitHub.
  * Use the minified version (end of file) for the actual bookmarklet.
  */
 
@@ -9,21 +10,15 @@
 // EXPANDED VERSION (for understanding)
 // ============================================
 
-(function() {
-  // Get the current URL
-  const url = window.location.href;
+javascript:(function() {
+  // Create a script element to load the core peek.js from GitHub
+  var script = document.createElement('script');
 
-  // List of archive domains to detect (anti-loop protection)
-  const archives = ['archive.is', 'archive.ph', 'archive.today', 'web.archive.org'];
+  // Load peek.js with cache-busting parameter
+  script.src = 'https://edgeof8.github.io/peek/peek.js?v=' + Date.now();
 
-  // Check if we're already on an archive page
-  if (archives.some(domain => url.includes(domain))) {
-    alert("You're already on an archive page!");
-    return;
-  }
-
-  // Redirect to archive.is/latest/ with the current URL encoded
-  window.location.href = 'https://archive.is/latest/' + encodeURIComponent(url);
+  // Append the script to the document body to execute it
+  document.body.appendChild(script);
 })();
 
 
@@ -31,9 +26,9 @@
 // MINIFIED VERSION (copy this for the bookmarklet)
 // ============================================
 
-// javascript:(function(){const url=window.location.href;const archives=['archive.is','archive.ph','archive.today','web.archive.org'];if(archives.some(a=>url.includes(a))){alert('You\'re already on an archive page!');return;}window.location.href='https://archive.is/latest/'+encodeURIComponent(url);})();
+// javascript:(function(){var s=document.createElement('script');s.src='https://edgeof8.github.io/peek/peek.js?v='+Date.now();document.body.appendChild(s);})();
 
-// Size: 307 bytes (minified)
+// Size: 147 bytes (minified)
 
 
 // ============================================
@@ -46,8 +41,16 @@
  * 3. Set the name to "peek" or whatever you prefer
  * 4. Paste the minified code into the URL field
  * 5. Save the bookmark to your bookmarks bar
- * 
- * Now click the bookmark on any website to instantly redirect to its archive!
+ *
+ * Now click the bookmark on any website to instantly load and execute the latest peek script!
+ *
+ * ARCHITECTURE:
+ * - The bookmarklet contains only a tiny loader (147 bytes)
+ * - The loader fetches peek.js from GitHub Pages
+ * - peek.js contains the core functionality (307 bytes)
+ * - Users always get the latest version automatically
+ * - Easy to update without users reinstalling
+ */
  */
 
 
