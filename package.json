@@ -1,0 +1,27 @@
+{
+  "name": "peek-bookmarklet",
+  "version": "1.0.0",
+  "description": "A lightweight bookmarklet to instantly access archived versions of web pages",
+  "main": "bookmarklet.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bookmarklet",
+    "archive",
+    "paywall",
+    "archived-web-pages",
+    "internet-archive",
+    "web-archiving"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adamt/peek"
+  },
+  "bugs": {
+    "url": "https://github.com/adamt/peek/issues"
+  },
+  "homepage": "https://github.com/adamt/peek"
+}

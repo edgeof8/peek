@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>peek - Quick Access to Archived Web Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: #1a202c;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .cta-section {
+            background: #f7fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .cta-text {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .bookmarklet-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            border: none;
+        }
+
+        .bookmarklet-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .bookmarklet-link:active {
+            cursor: grabbing;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .feature {
+            padding: 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .code-section {
+            background: #1a202c;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .code-label {
+            font-size: 12px;
+            color: #a0aec0;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        code {
+            color: #68d391;
+            font-size: 12px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        .footer {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .github-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .container {
+                padding: 40px 24px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👀 peek</h1>
+        <p class="subtitle">One-click access to archived web pages</p>
+
+        <p class="description">
+            Read paywalled articles, recover deleted content, and avoid tracking—instantly redirected to the latest archived snapshot.
+        </p>
+
+        <div class="cta-section">
+            <p class="cta-text">📌 Drag to your bookmarks bar:</p>
+            <a href="javascript:(function(){const url=window.location.href;const archives=['archive.is','archive.ph','archive.today','web.archive.org'];if(archives.some(a=>url.includes(a))){alert('You\'re already on an archive page!');return;}window.location.href='https://archive.is/latest/'+encodeURIComponent(url);})();" class="bookmarklet-link">
+                👀 Peek
+            </a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🚀</div>
+                <div class="feature-title">Instant</div>
+                <div class="feature-text">One click redirects to archive</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Private</div>
+                <div class="feature-text">No tracking, no external libs</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Universal</div>
+                <div class="feature-text">Works on all modern browsers</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Fast</div>
+                <div class="feature-text">Executes in milliseconds</div>
+            </div>
+        </div>
+
+        <div class="code-section">
+            <div class="code-label">Bookmarklet Code</div>
+            <code>javascript:(function(){const url=window.location.href;const archives=['archive.is','archive.ph','archive.today','web.archive.org'];if(archives.some(a=>url.includes(a))){alert('You\'re already on an archive page!');return;}window.location.href='https://archive.is/latest/'+encodeURIComponent(url);})();</code>
+        </div>
+
+        <p class="description">
+            <strong>Can't drag?</strong> Copy the code above and create a new bookmark with it as the URL. Works on desktop and mobile!
+        </p>
+
+        <div class="footer">
+            Want to contribute or report an issue? Check out the <a href="https://github.com/adamt" class="github-link">GitHub repository</a>.
+        </div>
+    </div>
+</body>
+</html>
